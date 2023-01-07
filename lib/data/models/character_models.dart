@@ -33,10 +33,9 @@ class Characters {
     species = json['species'];
     type = json['type'];
     gender = json['gender'];
-    origin =
-        json['origin'] != null ? new Origin.fromJson(json['origin']) : null;
+    origin = json['origin'] != null ? Origin.fromJson(json['origin']) : null;
     location =
-        json['location'] != null ? new Origin.fromJson(json['location']) : null;
+        json['location'] != null ? Origin.fromJson(json['location']) : null;
     image = json['image'];
     episode = json['episode'].cast<String>();
     url = json['url'];
@@ -44,23 +43,23 @@ class Characters {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['status'] = this.status;
-    data['species'] = this.species;
-    data['type'] = this.type;
-    data['gender'] = this.gender;
-    if (this.origin != null) {
-      data['origin'] = this.origin!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['status'] = status;
+    data['species'] = species;
+    data['type'] = type;
+    data['gender'] = gender;
+    if (origin != null) {
+      data['origin'] = origin!.toJson();
     }
-    if (this.location != null) {
-      data['location'] = this.location!.toJson();
+    if (location != null) {
+      data['location'] = location!.toJson();
     }
-    data['image'] = this.image;
-    data['episode'] = this.episode;
-    data['url'] = this.url;
-    data['created'] = this.created;
+    data['image'] = image;
+    data['episode'] = episode;
+    data['url'] = url;
+    data['created'] = created;
     return data;
   }
 }
@@ -77,9 +76,9 @@ class Origin {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['url'] = url;
     return data;
   }
 }
