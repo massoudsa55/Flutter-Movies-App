@@ -1,6 +1,6 @@
 // base url for api
-const baseUrl = 'https://api.themoviedb.org/3';
-const keyApi = '496b90b66ead4ed1e4b4fc71a17c6fa9';
+const baseUrl = 'https://api.themoviedb.org/3/';
+const apiKey = '496b90b66ead4ed1e4b4fc71a17c6fa9';
 const apiRequest =
     'https://api.themoviedb.org/3/movie/550?api_key=496b90b66ead4ed1e4b4fc71a17c6fa9';
 const accesstokenApi =

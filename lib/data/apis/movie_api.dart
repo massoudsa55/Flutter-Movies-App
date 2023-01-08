@@ -14,17 +14,16 @@ class MovieApis {
       receiveTimeout: 20 * 1000, // 20 seconds
     );
     dio = Dio(baseOptions);
-
-// get all movies from api
-    Future<List<dynamic>> getAllMovies() async {
-      try {
-        Response response = await dio.get('now_playing?api_key=$apiKey');
-        return response.data;
-      } catch (e) {
-        // ignore: avoid_print
-        print(e.toString());
-        return [];
-      }
+  }
+  // get all movies from api
+  Future<List<dynamic>> getAllMovies() async {
+    try {
+      Response response = await dio.get('now_playing?api_key=$apiKey');
+      return response.data;
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+      return [];
     }
   }
 }
