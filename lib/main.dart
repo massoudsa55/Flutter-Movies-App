@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 import 'core/constants/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.appRouter});
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: onGenerateRoute,
+      onGenerateRoute: appRouter.onGenerateRoute,
     );
   }
 }
