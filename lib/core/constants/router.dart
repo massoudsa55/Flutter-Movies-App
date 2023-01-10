@@ -23,8 +23,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LandingScreen());
       case AppRoutes.homeScreenRoute:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => moviesCubit,
+          builder: (_) => BlocProvider<MoviesCubit>(
+            create: (context) => MoviesCubit(movieRepository),
             child: const HomeScreen(),
           ),
         );

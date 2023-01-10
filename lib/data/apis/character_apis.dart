@@ -6,6 +6,7 @@ class CharacterApis {
   late Dio dio;
 
   CharacterApis() {
+    // ignore: unused_local_variable
     BaseOptions baseOptions = BaseOptions(
       baseUrl: baseUrl,
       contentType: 'UTF-8',
