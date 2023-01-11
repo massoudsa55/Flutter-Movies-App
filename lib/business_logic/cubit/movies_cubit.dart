@@ -9,13 +9,13 @@ part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   final MovieRepository movieRepository;
-  List<Movie>? movies;
+  List<Movie> movies = [];
   MoviesCubit(this.movieRepository) : super(MoviesInitial());
   List<Movie> getAllMovies() {
     movieRepository.getAllMovies().then((movie) {
       emit(MoviesLoaded(movie));
       movies = movies;
     });
-    return movies!;
+    return movies;
   }
 }

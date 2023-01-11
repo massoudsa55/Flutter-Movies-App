@@ -14,34 +14,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // for all movies
-  late List<Movie> allMovies;
+  List<Movie> allMovies = [];
 
   @override
   void initState() {
     super.initState();
-    // inject the state has all movies
+    // inject the state for getting all movies
     allMovies = BlocProvider.of<MoviesCubit>(context).getAllMovies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: AppBar(
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(color: kprimaryColor),
-              color: kprimaryColor,
-              child: Material(
-                borderRadius: BorderRadius.circular(7),
-                elevation: 1,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(7)),
-                      borderSide: BorderSide(
-                        color: Colors.black38,
-                        width: 2,
+    return SafeArea(
+      child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(60),
+            child: AppBar(
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(color: kPrimaryColor),
+                child: Material(
+                  borderRadius: BorderRadius.circular(7),
+                  elevation: 1,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7)),
+                        borderSide: BorderSide(
+                          color: Colors.black38,
+                          width: 2,
+                        ),
                       ),
                     ),
                   ),
@@ -49,11 +50,19 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-        ),
-        body: Column(
-          children: [
-            Container(),
-          ],
-        ));
+          body: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 150,
+                decoration: const BoxDecoration(color: kTertiaryColor),
+                child: Center(
+                  child: Text(
+                      allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }
