@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../business_logic/cubit/movies_cubit.dart';
 import '../../../core/constants/colors.dart';
 import '../../../data/models/movie.dart';
+import '../../widgets/home/movie_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,14 +21,42 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     // inject the state for getting all movies
-    allMovies = BlocProvider.of<MoviesCubit>(context).getAllMovies();
+    BlocProvider.of<MoviesCubit>(context).getAllMovies();
   }
+
+  Widget buildBlocWidget() => BlocBuilder<MoviesCubit, MoviesState>(
+        builder: (context, state) {
+          if (state is MoviesLoaded) {
+            return buildLoadedListWidgets();
+          }
+          return showLoadingIndicator();
+        },
+      );
+
+  Widget buildLoadedListWidgets() => SingleChildScrollView(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 2 / 3,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1,
+          ),
+          shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
+          padding: EdgeInsets.zero,
+          itemCount: allMovies.length,
+          itemBuilder: (context, index) => MovieItem(movie: allMovies[index]),
+        ),
+      );
+
+  Widget showLoadingIndicator() =>
+      const Center(child: CircularProgressIndicator(color: kPrimaryColor));
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: PreferredSize(
+          /*appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: AppBar(
               flexibleSpace: Container(
@@ -49,20 +78,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-          ),
+          ),*/
           body: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 150,
-                decoration: const BoxDecoration(color: kTertiaryColor),
-                child: Center(
-                  child: Text(
-                      allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
-                ),
-              ),
-            ],
-          )),
+        children: [
+          Container(
+            width: double.infinity,
+            height: 150,
+            decoration: const BoxDecoration(color: kTertiaryColor),
+            child: Center(
+              child: Text(
+                  allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
