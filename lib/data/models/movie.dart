@@ -1,13 +1,68 @@
-class Movie {
-  late final String backdropPath;
+import 'package:equatable/equatable.dart';
+
+class Movie extends Equatable {
   late final int id;
-  late final String originalLanguage;
+  late final String title;
+  late final String backdropPath; // properity of image
+  late final List<int> genreIds;
+  late final String overView; // descriptions
+  late final String voteAverage; // averages of vot
+  late final String releaseDate;
+
+  const Movie({
+    required this.id,
+    required this.title,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.overView,
+    required this.voteAverage,
+    required this.releaseDate,
+  });
+
+  @override
+  List<Object> get props => [
+        id,
+        title,
+        backdropPath,
+        genreIds,
+        overView,
+        voteAverage,
+        releaseDate,
+      ];
+
+  Movie.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    backdropPath = json['backdropPath'];
+    genreIds = json['genreIds'];
+    overView = json['overview'];
+    voteAverage = json['voteAverage'];
+    releaseDate = json['releaseDate'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['backdropPath'] = backdropPath;
+    data['genreIds'] = genreIds;
+    data['overview'] = overView;
+    data['voteAverage'] = voteAverage;
+    data['releaseDate'] = releaseDate;
+    return data;
+  }
+}
+
+/*class Movie {
+  late final int id;
+  late final String title;
+  late final String backdropPath; // properity of image
   late final String originalTitle;
-  late final String overview;
   late final double popularity;
+  late final String originalLanguage;
+  late final String overview;
   late final String posterPath;
   late final String releaseDate;
-  late final String title;
   late final bool video;
   late final int voteCount;
   late final String voteAverage;
@@ -60,4 +115,4 @@ class Movie {
     data['voteAverage'] = voteAverage;
     return data;
   }
-}
+}*/
