@@ -11,4 +11,7 @@ class MovieRepository {
     final movies = await movieApis.getAllMovies();
     return movies.map((movie) => Movie.fromJson(movie)).toList();
   }
+
+  // get Now Playing
+  Future<List<Movie>> getNowPlaying() async {}
 }
