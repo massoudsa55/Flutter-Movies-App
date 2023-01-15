@@ -14,4 +14,7 @@ class MovieRepository {
 
   // get Now Playing
   Future<List<Movie>> getNowPlaying() async {}
+
+  // get popular movies
+  Future<List<Movie>> getPopularMovies() async {}
 }
