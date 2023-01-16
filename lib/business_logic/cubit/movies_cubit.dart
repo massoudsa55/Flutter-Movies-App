@@ -2,16 +2,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/movie.dart';
+import '../../data/models/movie_model.dart';
 import '../../data/repository/movie_repository.dart';
 
 part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   final MovieRepository movieRepository;
-  List<Movie> movies = [];
+  List<MovieModel> movies = [];
   MoviesCubit(this.movieRepository) : super(MoviesInitial());
-  List<Movie> getAllMovies() {
+  List<MovieModel> getAllMovies() {
     movieRepository.getAllMovies().then((movie) {
       emit(MoviesLoaded(movie));
       movies = movies;

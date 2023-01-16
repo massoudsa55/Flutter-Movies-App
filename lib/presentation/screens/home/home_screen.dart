@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../business_logic/cubit/movies_cubit.dart';
 import '../../../core/constants/colors.dart';
-import '../../../data/models/movie.dart';
+import '../../../data/models/movie_model.dart';
 import '../../widgets/home/movie_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // for all movies
-  List<Movie> allMovies = [];
+  List<MovieModel> allMovies = [];
 
   @override
   void initState() {

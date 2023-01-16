@@ -1,4 +1,4 @@
-import 'package:flutter_movies_app/data/models/movie.dart';
+import 'package:flutter_movies_app/data/models/movie_model.dart';
 
 import '../apis/movie_api.dart';
 
@@ -6,15 +6,21 @@ class MovieRepository {
   final MovieApis movieApis;
 
   MovieRepository(this.movieApis);
-  // get all movies from api
-  Future<List<Movie>> getAllMovies() async {
-    final movies = await movieApis.getAllMovies();
-    return movies.map((movie) => Movie.fromJson(movie)).toList();
+  // get all movies now_playing from api
+  Future<List<MovieModel>> getAllMovies() async {
+    final movies = await movieApis.getNowPlaying();
+    return movies.map((movie) => MovieModel.fromJson(movie)).toList();
   }
 
-  // get Now Playing
-  Future<List<Movie>> getNowPlaying() async {}
-
   // get popular movies
-  Future<List<Movie>> getPopularMovies() async {}
+  Future<List<MovieModel>> getPopularMovies() async {
+    final movies = await movieApis.getPopularMovies();
+    return movies.map((movie) => MovieModel.fromJson(movie)).toList();
+  }
+
+  // get top rate movies
+  Future<List<MovieModel>> getTopRateMovies() async {
+    final movies = await movieApis.getTopRateMovies();
+    return movies.map((movie) => MovieModel.fromJson(movie)).toList();
+  }
 }
