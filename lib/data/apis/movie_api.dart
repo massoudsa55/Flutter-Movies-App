@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_movies_app/core/constants/error/exceptions.dart';
 
-import '../../core/constants/constants.dart';
+import '../../core/constants/error/exceptions.dart';
 import '../../core/network/error_message_model.dart';
+import '../../core/services/api_services.dart';
 
 class MovieApis {
   late Dio dio;
 
   MovieApis() {
     BaseOptions baseOptions = BaseOptions(
-      baseUrl: baseUrl,
+      // baseUrl: baseUrl,
       // contentType: 'UTF-8',
       receiveDataWhenStatusError: true,
       connectTimeout: 20 * 1000, // 20 seconds
@@ -19,7 +19,7 @@ class MovieApis {
   }
   // get all movies now_playing from api
   Future<List<dynamic>> getNowPlaying() async {
-    Response response = await dio.get('/movie/now_playing?api_key=$apiKey');
+    Response response = await dio.get(ApiServices.nowPlayingMoviePath);
     switch (response.statusCode) {
       case 200:
         return response.data['results'] as List;
@@ -35,7 +35,7 @@ class MovieApis {
 
   // get popular movies from api
   Future<List<dynamic>> getPopularMovies() async {
-    Response response = await dio.get('/movie/now_playing?api_key=$apiKey');
+    Response response = await dio.get(ApiServices.nowPlayingMoviePath);
     switch (response.statusCode) {
       case 200:
         return response.data['results'] as List;
@@ -51,7 +51,7 @@ class MovieApis {
 
   // get top rate movies from api
   Future<List<dynamic>> getTopRateMovies() async {
-    Response response = await dio.get('/movie/now_playing?api_key=$apiKey');
+    Response response = await dio.get(ApiServices.topRatedMoviePath);
     switch (response.statusCode) {
       case 200:
         return response.data['results'] as List;
