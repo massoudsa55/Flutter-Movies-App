@@ -20,48 +20,30 @@ class MovieApis {
   // get all movies now_playing from api
   Future<List<dynamic>> getNowPlaying() async {
     Response response = await dio.get(ApiServices.nowPlayingMoviePath);
-    switch (response.statusCode) {
-      case 200:
-        return response.data['results'] as List;
-      case 401:
-        return [];
-      case 405:
-        return [];
-      default:
-        throw ServerException(
-            errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    if (response.statusCode == 200) {
+      return response.data['results'] as List;
     }
+    return throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 
-  // get popular movies from api
+// get popular movies from api
   Future<List<dynamic>> getPopularMovies() async {
     Response response = await dio.get(ApiServices.nowPlayingMoviePath);
-    switch (response.statusCode) {
-      case 200:
-        return response.data['results'] as List;
-      case 401:
-        return [];
-      case 405:
-        return [];
-      default:
-        throw ServerException(
-            errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    if (response.statusCode == 200) {
+      return response.data['results'] as List;
     }
+    return throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 
-  // get top rate movies from api
+// get top rate movies from api
   Future<List<dynamic>> getTopRateMovies() async {
     Response response = await dio.get(ApiServices.topRatedMoviePath);
-    switch (response.statusCode) {
-      case 200:
-        return response.data['results'] as List;
-      case 401:
-        return [];
-      case 405:
-        return [];
-      default:
-        throw ServerException(
-            errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    if (response.statusCode == 200) {
+      return response.data['results'] as List;
     }
+    return throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 }
