@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          /*appBar: PreferredSize(
+          appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: AppBar(
               flexibleSpace: Container(
@@ -78,20 +78,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-          ),*/
-          body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 150,
-            decoration: const BoxDecoration(color: kTertiaryColor),
-            child: Center(
-              child: Text(
-                  allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
-            ),
           ),
-        ],
-      )),
+          body: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 150,
+                decoration: const BoxDecoration(color: kTertiaryColor),
+                child: Center(
+                  child: Text(
+                      allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
