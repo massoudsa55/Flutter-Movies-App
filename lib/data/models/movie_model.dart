@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_movies_app/data/entitys/movie.dart';
 
 class MovieModel extends Movie {
@@ -18,7 +17,7 @@ class MovieModel extends Movie {
         backdropPath: json['backdrop_path'],
         genreIds: List<int>.from(json['genre_ids'].map((e) => e)),
         overView: json['overView'],
-        voteAverage: json['vote_average'],
+        voteAverage: json['vote_average'].toString(),
         releaseDate: json['release_date'],
       );
 

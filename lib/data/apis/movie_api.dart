@@ -8,14 +8,15 @@ class MovieApis {
   late Dio dio;
 
   MovieApis() {
-    BaseOptions baseOptions = BaseOptions(
-      // baseUrl: baseUrl,
-      // contentType: 'UTF-8',
-      receiveDataWhenStatusError: true,
-      connectTimeout: 20 * 1000, // 20 seconds
-      receiveTimeout: 20 * 1000, // 20 seconds
-    );
-    dio = Dio(baseOptions);
+    // BaseOptions baseOptions = BaseOptions(
+    //   // baseUrl: baseUrl,
+    //   // contentType: 'UTF-8',
+    //   receiveDataWhenStatusError: true,
+    //   connectTimeout: 20 * 1000, // 20 seconds
+    //   receiveTimeout: 20 * 1000, // 20 seconds
+    // );
+    // dio = Dio(baseOptions);
+    dio = Dio();
   }
   // get all movies now_playing from api
   Future<List<dynamic>> getNowPlaying() async {
