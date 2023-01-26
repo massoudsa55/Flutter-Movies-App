@@ -7,6 +7,10 @@ class MovieItem extends StatelessWidget {
   final MovieModel movie;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      // height: 200,
+      color: Colors.yellowAccent,
+      child: Text(movie.title),
+    );
   }
 }

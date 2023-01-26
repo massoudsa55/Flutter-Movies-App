@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     // inject the state for getting all movies
-    allMovies = BlocProvider.of<MoviesCubit>(context).getAllMovies();
+    allMovies = BlocProvider.of<MoviesCubit>(context).getNowPlayingMovies();
   }
 
   Widget buildBlocWidget() => BlocBuilder<MoviesCubit, MoviesState>(
@@ -90,6 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
             ),
           ),
+          const SizedBox(height: 20),
+          buildBlocWidget(),
         ],
       )),
     );

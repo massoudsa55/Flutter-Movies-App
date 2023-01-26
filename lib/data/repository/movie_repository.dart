@@ -7,8 +7,8 @@ class MovieRepository {
 
   MovieRepository(this.movieApis);
   // get all movies now_playing from api
-  Future<List<MovieModel>> getAllMovies() async {
-    final movies = await movieApis.getNowPlaying();
+  Future<List<MovieModel>> getNowPlayingMovies() async {
+    final movies = await movieApis.getNowPlayingMovies();
     return movies.map((movie) => MovieModel.fromJson(movie)).toList();
   }
 

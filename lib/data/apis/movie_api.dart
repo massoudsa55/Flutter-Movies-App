@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_movies_app/data/models/movie_model.dart';
 
 import '../../core/constants/error/exceptions.dart';
 import '../../core/network/error_message_model.dart';
@@ -19,10 +20,10 @@ class MovieApis {
     dio = Dio();
   }
   // get all movies now_playing from api
-  Future<List<dynamic>> getNowPlaying() async {
+  Future<List<dynamic>> getNowPlayingMovies() async {
     Response response = await dio.get(ApiServices.nowPlayingMoviePath);
     if (response.statusCode == 200) {
-      return response.data['results'] as List;
+      return response.data['results'];
     }
     return throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data));

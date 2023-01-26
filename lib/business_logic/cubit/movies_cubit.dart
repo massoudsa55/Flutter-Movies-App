@@ -11,8 +11,8 @@ class MoviesCubit extends Cubit<MoviesState> {
   final MovieRepository movieRepository;
   List<MovieModel> movies = [];
   MoviesCubit(this.movieRepository) : super(MoviesInitial());
-  List<MovieModel> getAllMovies() {
-    movieRepository.getAllMovies().then((movie) {
+  List<MovieModel> getNowPlayingMovies() {
+    movieRepository.getNowPlayingMovies().then((movie) {
       movies = movies;
       emit(MoviesLoaded(movie));
     });
