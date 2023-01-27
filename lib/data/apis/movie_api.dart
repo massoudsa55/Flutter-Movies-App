@@ -6,7 +6,7 @@ import '../../core/network/error_message_model.dart';
 import '../../core/services/api_services.dart';
 
 class MovieApis {
-  late Dio dio;
+  Dio dio = Dio();
 
   MovieApis() {
     // BaseOptions baseOptions = BaseOptions(
@@ -17,7 +17,6 @@ class MovieApis {
     //   receiveTimeout: 20 * 1000, // 20 seconds
     // );
     // dio = Dio(baseOptions);
-    dio = Dio();
   }
   // get all movies now_playing from api
   Future<List<dynamic>> getNowPlayingMovies() async {
