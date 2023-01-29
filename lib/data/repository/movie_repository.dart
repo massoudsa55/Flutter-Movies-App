@@ -1,8 +1,12 @@
+import 'package:flutter_movies_app/core/error/failure.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_movies_app/data/models/movie_model.dart';
+import 'package:flutter_movies_app/domain/entities/movie.dart';
+import 'package:flutter_movies_app/domain/repository/base_movies_repository.dart';
 
 import '../apis/movie_api.dart';
 
-class MovieRepository {
+/*class MovieRepository {
   final MovieApis movieApis;
 
   MovieRepository(this.movieApis);
@@ -23,4 +27,20 @@ class MovieRepository {
     final movies = await movieApis.getTopRateMovies();
     return movies.map((movie) => MovieModel.fromJson(movie)).toList();
   }
+}*/
+
+class MovieRepository extends BaseMoviesRepository {
+  final BaseMovieApis baseMovieApis;
+  MovieRepository(this.baseMovieApis);
+  @override
+  Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
+    final movies = await baseMovieApis.getNowPlayingMovies();
+    return movies.map((movie) => MovieModel.fromJson(movie)).toList();
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getPopularMovies() {}
+
+  @override
+  Future<Either<Failure, List<Movie>>> getTopRatedMovies() {}
 }
