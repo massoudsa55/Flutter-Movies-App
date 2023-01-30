@@ -35,12 +35,30 @@ class MovieRepository extends BaseMoviesRepository {
   @override
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
     final movies = await baseMovieApis.getNowPlayingMovies();
-    return movies.map((movie) => MovieModel.fromJson(movie)).toList();
+    try {
+      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
+    } on InternetFailure catch (e) {
+      return Left(InternetFailure(e.message));
+    }
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getPopularMovies() {}
+  Future<Either<Failure, List<Movie>>> getPopularMovies() async {
+    final movies = await baseMovieApis.getPopularMovies();
+    try {
+      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
+    } on InternetFailure catch (e) {
+      return Left(InternetFailure(e.message));
+    }
+  }
 
   @override
-  Future<Either<Failure, List<Movie>>> getTopRatedMovies() {}
+  Future<Either<Failure, List<Movie>>> getTopRatedMovies() async {
+    final movies = await baseMovieApis.getTopRateMovies();
+    try {
+      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
+    } on InternetFailure catch (e) {
+      return Left(InternetFailure(e.message));
+    }
+  }
 }
