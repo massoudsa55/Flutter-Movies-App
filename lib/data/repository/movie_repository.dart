@@ -4,6 +4,7 @@ import 'package:flutter_movies_app/data/models/movie_model.dart';
 import 'package:flutter_movies_app/domain/entities/movie.dart';
 import 'package:flutter_movies_app/domain/repository/base_movies_repository.dart';
 
+import '../../core/constants/error/exceptions.dart';
 import '../apis/movie_api.dart';
 
 /*class MovieRepository {
@@ -36,9 +37,9 @@ class MovieRepository extends BaseMoviesRepository {
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
     final movies = await baseMovieApis.getNowPlayingMovies();
     try {
-      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
-    } on InternetFailure catch (e) {
-      return Left(InternetFailure(e.message));
+      return Right(movies);
+    } on ServerException catch (failure) {
+      return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
 
@@ -46,9 +47,9 @@ class MovieRepository extends BaseMoviesRepository {
   Future<Either<Failure, List<Movie>>> getPopularMovies() async {
     final movies = await baseMovieApis.getPopularMovies();
     try {
-      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
-    } on InternetFailure catch (e) {
-      return Left(InternetFailure(e.message));
+      return Right(movies);
+    } on ServerException catch (failure) {
+      return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
 
@@ -56,9 +57,9 @@ class MovieRepository extends BaseMoviesRepository {
   Future<Either<Failure, List<Movie>>> getTopRatedMovies() async {
     final movies = await baseMovieApis.getTopRateMovies();
     try {
-      return Right(movies.map((movie) => MovieModel.fromJson(movie)).toList());
-    } on InternetFailure catch (e) {
-      return Left(InternetFailure(e.message));
+      return Right(movies);
+    } on ServerException catch (failure) {
+      return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
 }

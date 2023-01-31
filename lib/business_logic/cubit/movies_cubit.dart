@@ -14,7 +14,8 @@ class MoviesCubit extends Cubit<MoviesState> {
   List<MovieModel> getNowPlayingMovies() {
     movieRepository.getNowPlayingMovies().then((movie) {
       movies = movies;
-      emit(MoviesLoaded(movie));
+      // TODO: handle this
+      // emit(MoviesLoaded(movie));
     });
     return movies;
   }

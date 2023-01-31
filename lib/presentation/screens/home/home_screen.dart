@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/data/apis/movie_api.dart';
+import 'package:flutter_movies_app/domain/usecases/get_now_playing_movie_usecase.dart';
 
 import '../../../business_logic/cubit/movies_cubit.dart';
 import '../../../core/constants/colors.dart';
 import '../../../data/models/movie_model.dart';
+import '../../../data/repository/movie_repository.dart';
+import '../../../domain/entities/movie.dart';
+import '../../../domain/repository/base_movies_repository.dart';
 import '../../widgets/home/movie_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,18 +20,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // for all movies
-  List<MovieModel> allMovies = [];
+  List<Movie> allMovies = [];
 
   @override
   void initState() {
     super.initState();
     // inject the state for getting all movies
-    allMovies = BlocProvider.of<MoviesCubit>(context).getNowPlayingMovies();
+    // allMovies = BlocProvider.of<MoviesCubit>(context).getNowPlayingMovies();
+    _getMovieData();
   }
 
   Widget buildBlocWidget() => BlocBuilder<MoviesCubit, MoviesState>(
         builder: (context, state) {
-          if (state is MoviesLoaded) {
+          //if (state is MoviesLoaded) {
+          if (allMovies.isNotEmpty) {
             return buildLoadedListWidgets();
           }
           return showLoadingIndicator();
@@ -79,21 +86,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),*/
-          body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 150,
-            decoration: const BoxDecoration(color: kTertiaryColor),
-            child: Center(
-              child: Text(
-                  allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
+          body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 150,
+              decoration: const BoxDecoration(color: kTertiaryColor),
+              child: Center(
+                child: Text(
+                    allMovies.isNotEmpty ? allMovies[0].title : "Data empty"),
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          buildBlocWidget(),
-        ],
+            const SizedBox(height: 20),
+            buildBlocWidget(),
+          ],
+        ),
       )),
     );
+  }
+
+  void _getMovieData() async {
+    BaseMovieApis movieApis = MovieApis();
+    BaseMoviesRepository moviesRepository = MovieRepository(movieApis);
+    final resutl = await GetNowPlayingMovieUseCase(moviesRepository).run();
+    resutl.fold((l) => null, (list) => allMovies = list);
+    print("ddd = ${allMovies[0].title}");
   }
 }
