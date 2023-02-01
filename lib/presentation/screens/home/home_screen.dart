@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/data/apis/movie_api.dart';
-import 'package:flutter_movies_app/domain/usecases/get_now_playing_movie_usecase.dart';
 
-import '../../../business_logic/cubit/movies_cubit.dart';
-import '../../../core/constants/colors.dart';
-import '../../../data/models/movie_model.dart';
-import '../../../data/repository/movie_repository.dart';
-import '../../../domain/entities/movie.dart';
-import '../../../domain/repository/base_movies_repository.dart';
-import '../../widgets/home/movie_item.dart';
+import '../../../core/services/services_locator.dart';
+import '../../controllers/bloc/movie_bloc.dart';
+import '../../controllers/bloc/movie_state.dart';
 
-class HomeScreen extends StatefulWidget {
+/*class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -112,5 +106,25 @@ class _HomeScreenState extends State<HomeScreen> {
     final resutl = await GetNowPlayingMovieUseCase(moviesRepository).run();
     resutl.fold((l) => null, (list) => allMovies = list);
     print("ddd = ${allMovies[0].title}");
+  }
+}*/
+
+/// -------------
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => MovieBloc(getIt())..add(GetNowPlayingMovieEvant()),
+      child: BlocBuilder<MovieBloc, MovieState>(
+        builder: (context, state) {
+          return Scaffold(
+            body: Center(
+                child: Text("Title: ${state.nowPlayingListMovies[0].title}")),
+          );
+        },
+      ),
+    );
   }
 }

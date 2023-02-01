@@ -1,5 +1,3 @@
-import 'package:flutter_movies_app/core/constants/error/exceptions.dart';
-
 import '../network/error_message_model.dart';
 
 class InternetException implements Exception {

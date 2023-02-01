@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'core/constants/router.dart';
 import 'core/constants/routes.dart';
+import 'core/services/services_locator.dart';
 
 void main() {
-  runApp(MyApp(
-    appRouter: AppRouter(),
-  ));
+  ServicesLocator().init();
+  runApp(MyApp(appRouter: AppRouter()));
 }
 
 class MyApp extends StatelessWidget {

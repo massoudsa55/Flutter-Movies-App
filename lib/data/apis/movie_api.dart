@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../core/constants/error/exceptions.dart';
+import '../../core/error/exceptions.dart';
 import '../../core/network/error_message_model.dart';
 import '../../core/services/api_services.dart';
 import '../models/movie_model.dart';
@@ -24,7 +24,7 @@ class MovieApis extends BaseMovieApis {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e))).toList();
     }
-    return throw ServerException(
+    return throw InternetException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 
@@ -35,7 +35,7 @@ class MovieApis extends BaseMovieApis {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e))).toList();
     }
-    return throw ServerException(
+    return throw InternetException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 
@@ -46,7 +46,7 @@ class MovieApis extends BaseMovieApis {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e))).toList();
     }
-    return throw ServerException(
+    return throw InternetException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 }

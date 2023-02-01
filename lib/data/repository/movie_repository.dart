@@ -1,10 +1,9 @@
-import 'package:flutter_movies_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_movies_app/data/models/movie_model.dart';
-import 'package:flutter_movies_app/domain/entities/movie.dart';
-import 'package:flutter_movies_app/domain/repository/base_movies_repository.dart';
 
-import '../../core/constants/error/exceptions.dart';
+import '../../core/error/exceptions.dart';
+import '../../core/error/failure.dart';
+import '../../domain/entities/movie.dart';
+import '../../domain/repository/base_movies_repository.dart';
 import '../apis/movie_api.dart';
 
 /*class MovieRepository {
@@ -38,7 +37,7 @@ class MovieRepository extends BaseMoviesRepository {
     final movies = await baseMovieApis.getNowPlayingMovies();
     try {
       return Right(movies);
-    } on ServerException catch (failure) {
+    } on InternetException catch (failure) {
       return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
@@ -48,7 +47,7 @@ class MovieRepository extends BaseMoviesRepository {
     final movies = await baseMovieApis.getPopularMovies();
     try {
       return Right(movies);
-    } on ServerException catch (failure) {
+    } on InternetException catch (failure) {
       return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
@@ -58,7 +57,7 @@ class MovieRepository extends BaseMoviesRepository {
     final movies = await baseMovieApis.getTopRateMovies();
     try {
       return Right(movies);
-    } on ServerException catch (failure) {
+    } on InternetException catch (failure) {
       return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }

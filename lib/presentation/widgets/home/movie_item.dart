@@ -8,7 +8,7 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      // height: 200,
       color: Color.fromARGB(255, 201, 201, 158),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
