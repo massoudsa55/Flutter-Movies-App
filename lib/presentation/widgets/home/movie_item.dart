@@ -9,7 +9,7 @@ class MovieItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // height: 200,
-      color: Color.fromARGB(255, 201, 201, 158),
+      color: const Color.fromARGB(255, 201, 201, 158),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

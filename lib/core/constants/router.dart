@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/data/apis/movie_api.dart';
 
 import '../../data/repository/movie_repository.dart';
+import '../../data/apis/movie_api.dart';
 import '../../presentation/screens/home/home_screen.dart';
 import '../../presentation/screens/landing_screen.dart';
 import 'routes.dart';
