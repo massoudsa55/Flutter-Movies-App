@@ -17,9 +17,7 @@ abstract class BaseMovieApis {
 class MovieApis extends BaseMovieApis {
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
-    Response response = await Dio().get(
-      ApiServices.nowPlayingMoviePath,
-    );
+    Response response = await Dio().get(ApiServices.nowPlayingMoviePath);
     if (response.statusCode == 200) {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e))).toList();
@@ -30,7 +28,7 @@ class MovieApis extends BaseMovieApis {
 
   @override
   Future<List<MovieModel>> getPopularMovies() async {
-    Response response = await Dio().get(ApiServices.nowPlayingMoviePath);
+    Response response = await Dio().get(ApiServices.popularMoviePath);
     if (response.statusCode == 200) {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e))).toList();

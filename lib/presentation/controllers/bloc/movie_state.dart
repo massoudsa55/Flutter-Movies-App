@@ -15,11 +15,26 @@ import '../../../core/utils/enums.dart';
 import '../../../domain/entities/movie.dart';
 
 class MovieState extends Equatable {
+  // properity of Now Playing Movie
   final List<Movie> nowPlayingListMovies;
   final RequestState nowPlayingRequestState;
   final String nowPlayingMessage;
+  // properity of Popular Movie
+  final List<Movie> popularListMovies;
+  final RequestState popularRequestState;
+  final String popularMessage;
+  // properity of Top Rated Movie
+  final List<Movie> topRatedListMovies;
+  final RequestState topRatedRequestState;
+  final String topRatedMessage;
 
   const MovieState({
+    this.popularListMovies = const [],
+    this.popularRequestState = RequestState.loading,
+    this.popularMessage = '',
+    this.topRatedListMovies = const [],
+    this.topRatedRequestState = RequestState.loading,
+    this.topRatedMessage = '',
     this.nowPlayingListMovies = const [],
     this.nowPlayingRequestState = RequestState.loading,
     this.nowPlayingMessage = '',
@@ -30,5 +45,11 @@ class MovieState extends Equatable {
         nowPlayingListMovies,
         nowPlayingRequestState,
         nowPlayingMessage,
+        popularListMovies,
+        popularRequestState,
+        popularMessage,
+        topRatedListMovies,
+        topRatedRequestState,
+        topRatedMessage
       ];
 }
