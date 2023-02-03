@@ -12,6 +12,8 @@ abstract class BaseMovieApis {
   Future<List<MovieModel>> getPopularMovies();
   // get top rate movies from api
   Future<List<MovieModel>> getTopRateMovies();
+  // get movie details from api
+  Future<List<MovieModel>> getMovieDetails();
 }
 
 class MovieApis extends BaseMovieApis {
@@ -46,5 +48,11 @@ class MovieApis extends BaseMovieApis {
     }
     return throw InternetException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data));
+  }
+
+  @override
+  Future<List<MovieModel>> getMovieDetails(int movieID) async {
+    Response response = await Dio().get(ApiServices.movieDetailsPath(movieID));
+    throw UnimplementedError();
   }
 }

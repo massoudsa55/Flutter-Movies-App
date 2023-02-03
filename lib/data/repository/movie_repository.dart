@@ -38,4 +38,10 @@ class MovieRepository extends BaseMoviesRepository {
       return Left(InternetFailure(failure.errorMessageModel.statusMessage));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getMovieDetails() {
+    // TODO: implement getMovieDetails
+    throw UnimplementedError();
+  }
 }

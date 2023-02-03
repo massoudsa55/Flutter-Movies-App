@@ -127,7 +127,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('my build');
     return BlocProvider(
       create: (context) => getIt<MovieBloc>()
         ..add(GetNowPlayingMovieEvant())
