@@ -13,11 +13,7 @@ final getIt = GetIt.instance;
 class ServicesLocator {
   void init() {
     // Movie Bloc
-    getIt.registerFactory(() => MovieBloc(
-          getIt(),
-          getIt(),
-          getIt(),
-        ));
+    getIt.registerFactory(() => MovieBloc(getIt(), getIt(), getIt()));
 
     // Movie Apis
     getIt.registerLazySingleton<BaseMovieApis>(() => MovieApis());

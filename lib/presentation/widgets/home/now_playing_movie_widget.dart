@@ -17,8 +17,8 @@ class NowPlayingMovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String textNowPlaying = 'Now Playing'.toUpperCase();
     return BlocBuilder<MovieBloc, MovieState>(builder: (context, state) {
-      print("state = ${state.nowPlayingRequestState}");
       switch (state.nowPlayingRequestState) {
         case RequestState.loading:
           return const SizedBox(
@@ -83,22 +83,30 @@ class NowPlayingMovieWidget extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 16.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: Colors.redAccent,
-                                      size: 12.0,
-                                    ),
-                                    const SizedBox(width: 4.0),
-                                    Text(
-                                      'Now Playing'.toUpperCase(),
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
+                                child: Container(
+                                  width: textNowPlaying.length.toDouble() * 14,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.circle,
+                                        color: Colors.redAccent,
+                                        size: 12.0,
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(width: 4.0),
+                                      Text(
+                                        textNowPlaying,
+                                        style: const TextStyle(
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Padding(
