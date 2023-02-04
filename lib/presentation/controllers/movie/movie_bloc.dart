@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../../domain/usecases/get_now_playing_movie_usecase.dart';
 import '../../../domain/usecases/get_popular_movie_usecase.dart';
@@ -19,14 +20,14 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     this.getPopularMovieUseCase,
     this.getTopRatedMovieUseCase,
   ) : super(const MovieState()) {
-    on<GetNowPlayingMovieEvant>(_getNowPlayingMovies);
-    on<GetPopularMovieEvant>(_getPopularMovies);
-    on<GetTopRatedMovieEvant>(_getTopRatedMovies);
+    on<GetNowPlayingMovieEvent>(_getNowPlayingMovies);
+    on<GetPopularMovieEvent>(_getPopularMovies);
+    on<GetTopRatedMovieEvent>(_getTopRatedMovies);
   }
 
   FutureOr<void> _getNowPlayingMovies(
-      GetNowPlayingMovieEvant event, Emitter<MovieState> emit) async {
-    final result = await getNowPlayingMovieUseCase();
+      GetNowPlayingMovieEvent event, Emitter<MovieState> emit) async {
+    final result = await getNowPlayingMovieUseCase(const NoParameters());
     result.fold(
         (l) => emit(state.copyWith(
               nowPlayingRequestState: RequestState.error,
@@ -39,8 +40,8 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   FutureOr<void> _getPopularMovies(
-      GetPopularMovieEvant event, Emitter<MovieState> emit) async {
-    final result = await getPopularMovieUseCase();
+      GetPopularMovieEvent event, Emitter<MovieState> emit) async {
+    final result = await getPopularMovieUseCase(const NoParameters());
     result.fold(
       (l) => emit(
         state.copyWith(
@@ -58,8 +59,8 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   FutureOr<void> _getTopRatedMovies(
-      GetTopRatedMovieEvant event, Emitter<MovieState> emit) async {
-    final result = await getTopRatedMovieUseCase();
+      GetTopRatedMovieEvent event, Emitter<MovieState> emit) async {
+    final result = await getTopRatedMovieUseCase(const NoParameters());
     result.fold(
       (l) => emit(
         state.copyWith(

@@ -1,3 +1,5 @@
+import 'package:flutter_movies_app/domain/usecases/get_movie_details_usecase.dart';
+import 'package:flutter_movies_app/presentation/controllers/movie_details/movie_details_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../data/apis/movie_api.dart';
@@ -6,25 +8,27 @@ import '../../domain/repository/base_movies_repository.dart';
 import '../../domain/usecases/get_now_playing_movie_usecase.dart';
 import '../../domain/usecases/get_popular_movie_usecase.dart';
 import '../../domain/usecases/get_top_rated_movie_usecase.dart';
-import '../../presentation/controllers/bloc/movie_bloc.dart';
+import '../../presentation/controllers/movie/movie_bloc.dart';
 
 final getIt = GetIt.instance;
 
 class ServicesLocator {
   void init() {
-    // Movie Bloc
+    // Bloc
     getIt.registerFactory(() => MovieBloc(getIt(), getIt(), getIt()));
+    getIt.registerFactory(() => MovieDetailsBloc(getIt()));
 
-    // Movie Apis
+    // Apis
     getIt.registerLazySingleton<BaseMovieApis>(() => MovieApis());
 
-    // Movie Repository
+    // Repository
     getIt.registerLazySingleton<BaseMoviesRepository>(
         () => MovieRepository(getIt()));
 
-    // Movie UseCases
+    // UseCases
     getIt.registerLazySingleton(() => GetNowPlayingMovieUseCase(getIt()));
     getIt.registerLazySingleton(() => GetPopularMovieUseCase(getIt()));
     getIt.registerLazySingleton(() => GetTopRatedMovieUseCase(getIt()));
+    getIt.registerLazySingleton(() => GetMovieDetailsUseCase(getIt()));
   }
 }

@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import '../../core/error/exceptions.dart';
 import '../../core/network/error_message_model.dart';
 import '../../core/services/api_services.dart';
+import '../../domain/usecases/get_movie_details_usecase.dart';
+import '../models/movie_details_model.dart';
 import '../models/movie_model.dart';
 
 abstract class BaseMovieApis {
@@ -13,7 +15,7 @@ abstract class BaseMovieApis {
   // get top rate movies from api
   Future<List<MovieModel>> getTopRateMovies();
   // get movie details from api
-  Future<List<MovieModel>> getMovieDetails();
+  Future<MovieDetailsModel> getMovieDetails(MovieDetailsParameters parameters);
 }
 
 class MovieApis extends BaseMovieApis {
@@ -51,8 +53,13 @@ class MovieApis extends BaseMovieApis {
   }
 
   @override
-  Future<List<MovieModel>> getMovieDetails(int movieID) async {
-    Response response = await Dio().get(ApiServices.movieDetailsPath(movieID));
-    throw UnimplementedError();
+  Future<MovieDetailsModel> getMovieDetails(
+      MovieDetailsParameters parameters) async {
+    Response response =
+        await Dio().get(ApiServices.movieDetailsPath(parameters.movieID));
+    if (response.statusCode == 200) {
+      return MovieDetailsModel.fromJson(response.data);
+    }
+    return throw InternetException(errorMessageModel: response.data);
   }
 }

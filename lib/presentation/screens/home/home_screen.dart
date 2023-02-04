@@ -1,17 +1,8 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/core/constants/colors.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:shimmer/shimmer.dart';
 
-import '../../../core/services/api_services.dart';
 import '../../../core/services/services_locator.dart';
-import '../../../core/utils/dummy.dart';
-import '../../controllers/bloc/movie_bloc.dart';
-import '../../controllers/bloc/movie_state.dart';
+import '../../controllers/movie/movie_bloc.dart';
 import '../../widgets/home/header_and_see_more_movies.dart';
 import '../../widgets/home/now_playing_movie_widget.dart';
 import '../../widgets/home/popular_movie_widget.dart';
@@ -129,9 +120,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<MovieBloc>()
-        ..add(GetNowPlayingMovieEvant())
-        ..add(GetPopularMovieEvant())
-        ..add(GetTopRatedMovieEvant()),
+        ..add(GetNowPlayingMovieEvent())
+        ..add(GetPopularMovieEvent())
+        ..add(GetTopRatedMovieEvent()),
       child: SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(

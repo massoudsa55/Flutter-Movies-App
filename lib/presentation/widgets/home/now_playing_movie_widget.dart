@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/api_services.dart';
 import '../../../core/utils/enums.dart';
-import '../../controllers/bloc/movie_bloc.dart';
-import '../../controllers/bloc/movie_state.dart';
+import '../../controllers/movie/movie_bloc.dart';
+import '../../controllers/movie/movie_state.dart';
 
 class NowPlayingMovieWidget extends StatelessWidget {
   const NowPlayingMovieWidget({

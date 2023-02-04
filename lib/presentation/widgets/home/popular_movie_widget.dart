@@ -1,14 +1,9 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movies_app/core/utils/enums.dart';
-import 'package:shimmer/shimmer.dart';
 
-import '../../../core/services/api_services.dart';
-import '../../../core/utils/dummy.dart';
-import '../../controllers/bloc/movie_bloc.dart';
-import '../../controllers/bloc/movie_state.dart';
+import '../../controllers/movie/movie_bloc.dart';
+import '../../controllers/movie/movie_state.dart';
 import 'movie_item.dart';
 
 class PopularMovieWidget extends StatelessWidget {
