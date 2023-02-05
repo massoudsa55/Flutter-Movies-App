@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movies_app/presentation/screens/details/details_screen.dart';
 
 import '../../data/repository/movie_repository.dart';
 import '../../data/apis/movie_api.dart';
@@ -20,6 +21,10 @@ class AppRouter {
       case AppRoutes.homeScreenRoute:
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
+        );
+      case AppRoutes.detailsScreenRoute:
+        return MaterialPageRoute(
+          builder: (context) => const DetailsScreen(movieID: 550),
         );
       default:
         return MaterialPageRoute(builder: (_) => const LandingScreen());

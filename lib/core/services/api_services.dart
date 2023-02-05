@@ -18,5 +18,7 @@ class ApiServices {
   static const String topRatedMoviePath =
       "$baseUrl/movie/top_rated?api_key=$apiKey";
   static String movieDetailsPath(int movieID) =>
-      "$baseUrl/movie/movie/$movieID?api_key=$apiKey";
+      "$baseUrl/movie/$movieID?api_key=$apiKey";
+  static String recommendationsPath(int movieID) =>
+      "$baseUrl/movie/$movieID/recommendations?api_key=$apiKey";
 }

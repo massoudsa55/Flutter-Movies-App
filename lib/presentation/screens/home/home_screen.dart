@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/presentation/screens/details/details_screen.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../controllers/movie/movie_bloc.dart';

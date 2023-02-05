@@ -1,8 +1,7 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter_movies_app/core/error/failure.dart';
-
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 
+import '../../core/error/failure.dart';
 import '../../core/usecase/base_usecase.dart';
 import '../entities/movie_details.dart';
 import '../repository/base_movies_repository.dart';
