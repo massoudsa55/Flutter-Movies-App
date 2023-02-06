@@ -43,13 +43,13 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
         RecommendationsParameters(id: event.movieID));
     result.fold(
       (l) => emit(
-        MovieDetailsState(
+        state.copyWith(
           recomendationsState: RequestState.error,
           recommendationsMessage: l.message,
         ),
       ),
       (r) => emit(
-        MovieDetailsState(
+        state.copyWith(
           recommendationsList: r,
           recomendationsState: RequestState.laoded,
         ),

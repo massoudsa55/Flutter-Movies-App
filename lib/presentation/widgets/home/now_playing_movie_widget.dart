@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/constants/colors.dart';
 
 import '../../../core/services/api_services.dart';
 import '../../../core/utils/enums.dart';
@@ -116,6 +117,7 @@ class NowPlayingMovieWidget extends StatelessWidget {
                                             textNowPlaying,
                                             style: const TextStyle(
                                               fontSize: 16.0,
+                                              color: kPrimaryColor,
                                             ),
                                           ),
                                         ],

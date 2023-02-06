@@ -28,8 +28,8 @@ class DetailsScreen extends StatelessWidget {
           print('xxx = ${state.movieDetails}');
           return Scaffold(
             body: MovieDetailContent(
-              movie: movieDetailsDummy,
-              recommendations: recommendationsDummy,
+              movie: state.movieDetails!,
+              recommendations: state.recommendationsList,
             ),
           );
           /*Container(
@@ -63,33 +63,61 @@ class MovieDetailContent extends StatelessWidget {
         SliverAppBar(
           pinned: true,
           expandedHeight: 250.0,
-          flexibleSpace: FlexibleSpaceBar(
-            background: FadeIn(
-              duration: const Duration(milliseconds: 500),
-              child: ShaderMask(
-                shaderCallback: (rect) {
-                  return const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black,
-                      Colors.black,
-                      Colors.transparent,
-                    ],
-                    stops: [0.0, 0.5, 1.0, 1.0],
-                  ).createShader(
-                    Rect.fromLTRB(0.0, 0.0, rect.width, rect.height),
-                  );
-                },
-                blendMode: BlendMode.dstIn,
-                child: CachedNetworkImage(
-                  width: MediaQuery.of(context).size.width,
-                  imageUrl: ApiServices.imageUrl(movie.backdropPath),
-                  fit: BoxFit.cover,
+          flexibleSpace: Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+              FlexibleSpaceBar(
+                background: FadeIn(
+                  duration: const Duration(milliseconds: 500),
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.black,
+                          Colors.black,
+                          Colors.transparent,
+                        ],
+                        stops: [0.0, 0.5, 1.0, 1.0],
+                      ).createShader(
+                        Rect.fromLTRB(0.0, 0.0, rect.width, rect.height),
+                      );
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: CachedNetworkImage(
+                      width: MediaQuery.of(context).size.width,
+                      imageUrl: ApiServices.imageUrl(movie.backdropPath),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              InkWell(
+                onTap: () {},
+                splashColor: Colors.grey,
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    right: 20.0,
+                    bottom: 8.0,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 8.0,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: kTertiaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.slow_motion_video_rounded,
+                    color: Colors.white,
+                    size: 35.0,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         SliverToBoxAdapter(
@@ -253,7 +281,7 @@ class MovieDetailContent extends StatelessWidget {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(4.0)),
               child: CachedNetworkImage(
-                imageUrl: ApiServices.imageUrl(recommendation.backdropPath),
+                imageUrl: ApiServices.imageUrl(recommendation.backdropPath!),
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey[850]!,
                   highlightColor: Colors.grey[800]!,

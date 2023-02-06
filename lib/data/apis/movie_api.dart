@@ -66,7 +66,8 @@ class MovieApis extends BaseMovieApis {
     if (response.statusCode == 200) {
       return MovieDetailsModel.fromJson(response.data);
     }
-    return throw InternetException(errorMessageModel: response.data);
+    return throw InternetException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 
   @override
@@ -78,6 +79,7 @@ class MovieApis extends BaseMovieApis {
       return List<RecommendationsModel>.from((response.data['results'] as List)
           .map((e) => RecommendationsModel.fromJson(e))).toList();
     }
-    return throw InternetException(errorMessageModel: response.data);
+    return throw InternetException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
 }
