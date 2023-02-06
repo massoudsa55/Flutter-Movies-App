@@ -20,7 +20,7 @@ class MovieDetailsModel extends MovieDetails {
             .map((genre) => GenresModel.fromJson(genre))),
         title: json['title'],
         overView: json['overview'],
-        runTime: json['run_time'],
+        runTime: json['run_time'] ?? 1,
         releaseDate: json['release_date'],
         voteAverage: json['vote_average'].toDouble(),
       );

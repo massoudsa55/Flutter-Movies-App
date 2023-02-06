@@ -55,8 +55,7 @@ class NowPlayingMovieWidget extends StatelessWidget {
                         onTap: () {
                           print('id = ${item.id}');
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                DetailsScreen(movieID: item.id),
+                            builder: (_) => DetailsScreen(movieID: item.id),
                           ));
                         },
                         child: Stack(

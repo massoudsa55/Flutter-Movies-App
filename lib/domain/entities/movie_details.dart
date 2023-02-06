@@ -8,7 +8,7 @@ class MovieDetails extends Equatable {
   final List<Genres> genres; //
   final String title; // title of movie
   final String overView; // descriptions of movie
-  final int runTime; // total time of movie
+  final int? runTime; // total time of movie
   final String releaseDate; // date of movie
   final double voteAverage;
 
@@ -18,7 +18,7 @@ class MovieDetails extends Equatable {
     required this.genres,
     required this.title,
     required this.overView,
-    required this.runTime,
+    this.runTime,
     required this.releaseDate,
     required this.voteAverage,
   });
