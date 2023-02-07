@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/utils/app_string.dart';
+
 class HeaderAndSeeMoreMovies extends StatelessWidget {
   const HeaderAndSeeMoreMovies({
     Key? key,
@@ -32,7 +34,7 @@ class HeaderAndSeeMoreMovies extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: const [
-                  Text('See More'),
+                  Text(AppString.seeMore),
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 16.0,

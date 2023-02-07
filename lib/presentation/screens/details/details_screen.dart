@@ -8,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/services/api_services.dart';
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_string.dart';
 import '../../../core/utils/enums.dart';
 import '../../../domain/entities/genres.dart';
 import '../../controllers/movie_details/movie_details_bloc.dart';
@@ -196,7 +197,7 @@ class MovieDetailContent extends StatelessWidget {
                         ),
                         const SizedBox(height: 8.0),
                         Text(
-                          'Genres: ${_showGenres(state.movieDetails!.genres)}',
+                          '${AppString.genres}: ${_showGenres(state.movieDetails!.genres)}',
                           style: const TextStyle(
                             color: kSecondaryColor,
                             fontSize: 12.0,
@@ -216,7 +217,7 @@ class MovieDetailContent extends StatelessWidget {
                     from: 20,
                     duration: const Duration(milliseconds: 500),
                     child: Text(
-                      'More like this'.toUpperCase(),
+                      AppString.moreLikeThis.toUpperCase(),
                       style: const TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w500,

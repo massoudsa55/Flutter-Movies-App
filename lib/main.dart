@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'core/constants/router.dart';
 import 'core/constants/routes.dart';
 import 'core/services/services_locator.dart';
+import 'core/utils/app_string.dart';
 
 void main() {
   ServicesLocator().init();
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: AppString.appName,
       theme: ThemeData.dark().copyWith(
         backgroundColor: Colors.grey.shade900,
       ),

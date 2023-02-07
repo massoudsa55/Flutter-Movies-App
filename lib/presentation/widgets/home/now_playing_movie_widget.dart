@@ -3,9 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/core/constants/colors.dart';
 
+import '../../../core/constants/colors.dart';
 import '../../../core/services/api_services.dart';
+import '../../../core/utils/app_string.dart';
 import '../../../core/utils/enums.dart';
 import '../../controllers/movie/movie_bloc.dart';
 import '../../controllers/movie/movie_state.dart';
@@ -18,7 +19,6 @@ class NowPlayingMovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String textNowPlaying = 'Now Playing'.toUpperCase();
     return BlocBuilder<MovieBloc, MovieState>(
         buildWhen: (previous, current) =>
             previous.nowPlayingRequestState != current.nowPlayingRequestState,
@@ -53,7 +53,6 @@ class NowPlayingMovieWidget extends StatelessWidget {
                       return GestureDetector(
                         key: const Key('openMovieMinimalDetail'),
                         onTap: () {
-                          print('id = ${item.id}');
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => DetailsScreen(movieID: item.id),
                           ));
@@ -94,8 +93,11 @@ class NowPlayingMovieWidget extends StatelessWidget {
                                     padding:
                                         const EdgeInsets.only(bottom: 16.0),
                                     child: Container(
-                                      width:
-                                          textNowPlaying.length.toDouble() * 14,
+                                      width: AppString.nowPlaying
+                                              .toUpperCase()
+                                              .length
+                                              .toDouble() *
+                                          14,
                                       height: 30,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
@@ -105,16 +107,16 @@ class NowPlayingMovieWidget extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
+                                        children: const [
+                                          Icon(
                                             Icons.circle,
                                             color: Colors.redAccent,
                                             size: 12.0,
                                           ),
-                                          const SizedBox(width: 4.0),
+                                          SizedBox(width: 4.0),
                                           Text(
-                                            textNowPlaying,
-                                            style: const TextStyle(
+                                            AppString.nowPlaying,
+                                            style: TextStyle(
                                               fontSize: 16.0,
                                               color: kPrimaryColor,
                                             ),

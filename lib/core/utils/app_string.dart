@@ -1,0 +1,9 @@
+class AppString {
+  static const appName = "Show Movies";
+  static const nowPlaying = "Now Playing";
+  static const popular = "Popular";
+  static const topRated = "Top Rated";
+  static const seeMore = "See More";
+  static const genres = "Genres";
+  static const moreLikeThis = "More like this";
+}

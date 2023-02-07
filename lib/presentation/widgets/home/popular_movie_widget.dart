@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/core/utils/enums.dart';
 
+import '../../../core/utils/enums.dart';
 import '../../controllers/movie/movie_bloc.dart';
 import '../../controllers/movie/movie_state.dart';
 import 'movie_item.dart';
