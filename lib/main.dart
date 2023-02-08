@@ -3,6 +3,7 @@ import 'core/constants/router.dart';
 import 'core/constants/routes.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/app_string.dart';
+import 'theme.dart';
 
 void main() {
   ServicesLocator().init();
@@ -18,9 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppString.appName,
-      theme: ThemeData.dark().copyWith(
-        backgroundColor: Colors.grey.shade900,
-      ),
+      theme: darkMode(),
       onGenerateRoute: appRouter.onGenerateRoute,
       initialRoute: AppRoutes.homeScreenRoute,
     );
